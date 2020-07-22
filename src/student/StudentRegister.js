@@ -94,40 +94,23 @@ export class StudentRegister extends Component {
                                         </Form.Row>
                                         <fieldset>
                                             <Form.Group as={Row}>
-                                                <Form.Label as="legend" column sm={2}>Radios </Form.Label>
+                                                <Form.Label as="legend" column sm={2}>Gender </Form.Label>
                                                 <Col sm={10}>
                                                     <Form.Check
                                                         type="radio"
-                                                        label="first radio"
-                                                        name="formHorizontalRadios"
-                                                        id="formHorizontalRadios1"
+                                                        label="Female"
+                                                        name="female"
+                                                        id="female"
                                                     />
                                                     <Form.Check
                                                         type="radio"
-                                                        label="second radio"
-                                                        name="formHorizontalRadios"
-                                                        id="formHorizontalRadios2"
-                                                    />
-                                                    <Form.Check
-                                                        type="radio"
-                                                        label="third radio"
-                                                        name="formHorizontalRadios"
-                                                        id="formHorizontalRadios3"
+                                                        label="Male"
+                                                        name="male"
+                                                        id="male"
                                                     />
                                                 </Col>
                                             </Form.Group>
                                         </fieldset>
-                                        <Form.Group as={Row} controlId="formHorizontalCheck">
-                                            <Col sm={{ span: 10, offset: 2 }}>
-                                                <Form.Check label="Remember me" />
-                                            </Col>
-                                        </Form.Group>
-
-                                        <Form.Group as={Row}>
-                                            <Col sm={{ span: 10, offset: 2 }}>
-                                                <Button type="submit">Sign in</Button>
-                                            </Col>
-                                        </Form.Group>
                                     </Form>
                                 </Row>
                             </Container>
