@@ -1,98 +1,146 @@
 import React, { Component } from 'react'
+import Modal from 'react-bootstrap/Modal'
 import { Form, Button, Col, Row, Container } from 'react-bootstrap'
 
-export class studentRegister extends Component {  onchange=(event)=>{
-    this.setState({
-        [event.target.name]:event.target.value,
-    })
+export class StudentRegister extends Component {
+
+    state = {
+        show: false
+    }
+
+    componentWillReceiveProps(value) {
+        this.setState({
+            show: value.showStudent
+        })
+    }
+
+    handleClose = () => {
+        this.setState({
+            show: false
+        })
+        window.location.reload();
+    }
+
+    submit = () => {
+        this.props.getdatapack();
+    }
+
+    onchange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <Modal
+                    show={this.state.show}
+                    onHide={this.handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Dialog>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Modal title</Modal.Title>
+                        </Modal.Header>
+
+                        <Modal.Body>
+                            <Container>
+                                <Row>
+                                    <Form>
+                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                            <Form.Label column sm={2}>First Name</Form.Label>
+                                            <Col sm={10}>
+                                                <Form.Control type="text" placeholder="First name" name="fname" onChange={this.onchange} />
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                            <Form.Label column sm={2}>Last Name</Form.Label>
+                                            <Col sm={10}>
+                                                <Form.Control type="text" placeholder="Last Name" name="Lname" onChange={this.onchange} />
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                            <Form.Label column sm={2}> NIC </Form.Label>
+                                            <Col sm={10}>
+                                                <Form.Control type="text" placeholder="NIC number" name="nic" onChange={this.onchange} />
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                            <Form.Label column sm={2}>Date of Birth</Form.Label>
+                                            <Col sm={10}>
+                                                <Form.Control placeholder="Last Name" name="dob" type="date" onChange={this.onchange} />
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                            <Form.Label column sm={2}>Email</Form.Label>
+                                            <Col sm={10}>
+                                                <Form.Control type="email" placeholder="Email" />
+                                            </Col>
+                                        </Form.Group>
+                                        <Form.Row>
+                                            <Form.Group as={Col} controlId="formGridState">
+                                                <Form.Label>Stream</Form.Label>
+                                                <Form.Control as="select" defaultValue="Choose..." name="Stream" onChange={this.onchange}>
+                                                    <option>Choose...</option>
+                                                    <option>Mathematics</option>
+                                                    <option>Arts</option>
+                                                    <option>Biology</option>
+                                                    <option>Technology</option>
+                                                    <option>Commerce</option>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Form.Row>
+                                        <fieldset>
+                                            <Form.Group as={Row}>
+                                                <Form.Label as="legend" column sm={2}>Radios </Form.Label>
+                                                <Col sm={10}>
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="first radio"
+                                                        name="formHorizontalRadios"
+                                                        id="formHorizontalRadios1"
+                                                    />
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="second radio"
+                                                        name="formHorizontalRadios"
+                                                        id="formHorizontalRadios2"
+                                                    />
+                                                    <Form.Check
+                                                        type="radio"
+                                                        label="third radio"
+                                                        name="formHorizontalRadios"
+                                                        id="formHorizontalRadios3"
+                                                    />
+                                                </Col>
+                                            </Form.Group>
+                                        </fieldset>
+                                        <Form.Group as={Row} controlId="formHorizontalCheck">
+                                            <Col sm={{ span: 10, offset: 2 }}>
+                                                <Form.Check label="Remember me" />
+                                            </Col>
+                                        </Form.Group>
+
+                                        <Form.Group as={Row}>
+                                            <Col sm={{ span: 10, offset: 2 }}>
+                                                <Button type="submit">Sign in</Button>
+                                            </Col>
+                                        </Form.Group>
+                                    </Form>
+                                </Row>
+                            </Container>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                            <Button variant="secondary">Close</Button>
+                            <Button variant="primary">Save changes</Button>
+                        </Modal.Footer>
+                    </Modal.Dialog>
+                </Modal>
+            </div>
+        )
+    }
 }
-submit=()=>{       
-       const data={
-            Firstname:this.state.Fname,
-            Lastname:this.state.Lname,
-            NicNo:this.state.nic,
-            Dob:this.state.date,
-            Dept:this.state.department,
-            Mail:this.state.email,
-            Pass:this.state.password
-        }  
-        // send data pack to index.js -> view Employee.js
-    this.props.getdatapack(data)
-}
-render() {
-    return (
-        <div className='form'>                
-            <Container>
-                <Row>
-                    <Col md={{ span: 6, offset: 3 }}>
-                        <Form className='form'>
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="Title">
-                                    <Form.Label><h1>Signup</h1></Form.Label>
-                                </Form.Group>
-                                </Form.Row>
-
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="Fname">
-                                    <Form.Label>First Name</Form.Label>
-                                    <Form.Control name="Fname" onChange = {this.onchange} />
-                                </Form.Group>
-                                <Form.Group as={Col} controlId="Lname">
-                                    <Form.Label>Last Name</Form.Label>
-                                    <Form.Control name="Lname" onChange = {this.onchange}/>
-                                </Form.Group>
-                                </Form.Row>
-
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="nic">
-                                    <Form.Label>NIC No </Form.Label>
-                                    <Form.Control name="nic" onChange = {this.onchange}/>
-                                </Form.Group>
-                                <Form.Group as={Col} controlId="dob">
-                                    <Form.Label>Date of Birth</Form.Label>
-                                    <Form.Control name="dob" type="date" onChange = {this.onchange}/>
-                                </Form.Group>
-                                </Form.Row>
-
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" name="email" placeholder="Enter email" onChange = {this.onchange}/>
-                                </Form.Group>
-
-                                <Form.Group as={Col} controlId="formGridPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" name="password" placeholder="Password" onChange = {this.onchange}/>
-                                </Form.Group>
-                            </Form.Row>
-
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="formGridState">
-                                    <Form.Label>department</Form.Label>
-                                    <Form.Control as="select" defaultValue="Choose..." name="department" onChange = {this.onchange}>
-                                        <option>Choose...</option>
-                                        <option>QA</option>
-                                        <option>Frontend</option>
-                                        <option>Backend</option>
-                                    </Form.Control>
-                                </Form.Group>
-
-                            </Form.Row>
-
-                            <Form.Group id="formGridCheckbox">
-                                <Form.Check type="checkbox" label="Check me out" />
-                            </Form.Group>
-
-                            <Button variant="primary" onClick={this.submit}>
-                                Submit
-                            </Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
-    )
-}
-}
-
-export default studentRegister
+export default StudentRegister

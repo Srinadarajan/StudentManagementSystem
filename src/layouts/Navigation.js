@@ -5,7 +5,6 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-//import {Form, FormControl, Button,Nav} from 'react-bootstrap'
 
 export class Navigation extends Component {
     render() {
@@ -14,7 +13,8 @@ export class Navigation extends Component {
                 <Navbar bg="dark" variant="dark">
                     <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/student">Student</Nav.Link>
+                        <Nav.Link href="/">View</Nav.Link>
+                        <Nav.Link href="/student">Register</Nav.Link>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

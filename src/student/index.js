@@ -1,51 +1,29 @@
 import React, { Component } from 'react'
-import StudentRegister from './StudentRegister'
 import ViewStudent from './ViewStudent'
+import StudentRegister from './StudentRegister'
 import Button from 'react-bootstrap/Button'
 
-export class index extends Component {
-    // 2 - create variable (showvalue) and set the value (false) of the button 
+export class student extends Component {
     state = {
-        showValue: false,
-        showEdit: false,
-        data2: ''
+        showValue: false
     }
-
-    // 3 - set the value (true) of the already created variable  (showvalue)
     view = () => {
         this.setState({
             showValue: true
         })
     }
-
-    edit = () => {
-        this.setState({
-            showEdit: true
-        })
-    }
-    getdata = (data1) => {
-        this.setState({
-            data2: data1
-        })
-
-    }
+    
     render() {
         return (
-            <>
-                <StudentRegister getdatapack={this.getdata} />
-                {/* 4 - get the value (true) from the function(showValue)  
-                transfer value to other page*/}
-                {/* send the fNamePack from RegisterEmployee to viewEmployee*/}
-                <ViewStudent showEmp={this.state.showValue} data3={this.state.data2} />
-
-                {/* 1 - Create button with function name - view */}
-                <div class="container-fluid text-center">
-                <Button variant="primary" onClick={this.view} style={{align:"right"}}>
+            <div>
+                <Button variant="primary"  onClick={this.view}>
                     View
-                </Button>    </div>
-            </>
+                </Button>
+                <ViewStudent />
+                <StudentRegister showStudent={this.state.showValue} />
+             </div>
         )
     }
 }
 
-export default index
+export default student
